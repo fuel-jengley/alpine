@@ -22,6 +22,8 @@ test('x-mask',
         get('input').type('{backspace}').should(haveValue('(123) 456-'))
         get('input').type('{backspace}').should(haveValue('(123) 456'))
         get('input').type('{backspace}').should(haveValue('(123) 45'))
+        // Make sure inserting an invalid character when all text is selected, it doesn't affect the value
+        get('input').type('{selectAll}@').should(haveValue('(123) 45'))
         // Make sure you can't type other characters.
         get('input').type('a').should(haveValue('(123) 45'))
         get('input').type('-').should(haveValue('(123) 45'))

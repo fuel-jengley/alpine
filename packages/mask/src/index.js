@@ -56,6 +56,11 @@ export default function (Alpine) {
                 return lastInputValue = el.value
             }
 
+            // If input would clear on the new input value, revert to original
+            if (stripDown(template, input).length === 0) {
+                return el.value = lastInputValue
+            }
+
             let setInput = () => { lastInputValue = el.value = formatInput(input, template) }
 
             if (shouldRestoreCursor) {
